@@ -1,0 +1,756 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}</style><style>:root{color-scheme:light dark;--md-bg:#fff;--md-text:rgba(0,0,0,.8);--md-muted:rgba(0,0,0,.6);--md-fill:rgba(0,0,0,.04);--md-fill-strong:rgba(0,0,0,.06);--md-rule:rgba(0,0,0,.1);--md-rule-strong:rgba(0,0,0,.16);--md-link:hsl(210 100% 45%)}@media (prefers-color-scheme:dark){:root:where(:not([data-theme="light"])){--md-bg:#0d0d0d;--md-text:rgba(255,255,255,.85);--md-muted:rgba(255,255,255,.6);--md-fill:rgba(255,255,255,.06);--md-fill-strong:rgba(255,255,255,.09);--md-rule:rgba(255,255,255,.14);--md-rule-strong:rgba(255,255,255,.22);--md-link:hsl(210 100% 72%)}}:root[data-theme="dark"]{color-scheme:dark;--md-bg:#0d0d0d;--md-text:rgba(255,255,255,.85);--md-muted:rgba(255,255,255,.6);--md-fill:rgba(255,255,255,.06);--md-fill-strong:rgba(255,255,255,.09);--md-rule:rgba(255,255,255,.14);--md-rule-strong:rgba(255,255,255,.22);--md-link:hsl(210 100% 72%)}:root[data-theme="light"]{color-scheme:light}@media print{:root,:root[data-theme="dark"]{color-scheme:light;--md-bg:#fff;--md-text:rgba(0,0,0,.8);--md-muted:rgba(0,0,0,.6);--md-fill:rgba(0,0,0,.04);--md-fill-strong:rgba(0,0,0,.06);--md-rule:rgba(0,0,0,.1);--md-rule-strong:rgba(0,0,0,.16);--md-link:hsl(210 100% 45%)}}body{background:var(--md-bg);color:var(--md-text);max-width:720px;margin:0 auto;padding:32px;display:flex;flex-direction:column;gap:10px;font:14px/1.55 -apple-system,BlinkMacSystemFont,'SF Pro','Segoe UI',sans-serif;overflow-wrap:break-word}body>:first-child{margin-top:0}h1,h2,h3,h4,h5,h6{margin:6px 0 0;line-height:1.25;font-weight:600;text-wrap:balance}h1{font-size:1.35em}h2{font-size:1.15em;color:var(--md-muted)}h3,h4,h5,h6{font-size:1em}p,ul,ol,blockquote,table,pre,hr{margin:0}strong{font-weight:600}a{color:var(--md-link);text-decoration:none}a:hover{text-decoration:underline}ul,ol{display:flex;flex-direction:column;gap:6px;padding-left:22px}ul{list-style:disc}ol{list-style:decimal}:is(li,td,th)>*+:is(p,ul,ol,blockquote){margin-top:6px}blockquote{display:flex;flex-direction:column;gap:10px;border-left:2px solid var(--md-rule);padding-left:10px;color:var(--md-muted)}:not(pre)>code{background:var(--md-fill);padding:1px 3px;border-radius:4px;font:.92em 'SF Mono',ui-monospace,Menlo,Consolas,monospace}a>code{background:none;color:inherit}pre{background:var(--md-fill);padding:10px 12px;border-radius:6px;overflow-x:auto;font:12px/1.5 'SF Mono',ui-monospace,Menlo,Consolas,monospace;margin-block:4px}pre code{background:none;padding:0;font:inherit}table{width:100%;border-collapse:separate;border-spacing:2px;font:inherit}th,td{padding:6px 8px;border-radius:3px;text-align:left;vertical-align:top}th{background:var(--md-fill-strong);font-weight:600}td{background:var(--md-fill)}:is(th,td) :not(pre)>code{background:transparent}hr{border:0;border-top:1px solid var(--md-rule-strong);margin-block:10px}img{max-width:100%;height:auto;border-radius:4px}</style>
+</head><body>
+<h1>PRD — AI-Enabled Scholarship &amp; Fellowship Management System (MoTA)</h1>
+<p><strong>SIH 2026 · PS 26239 · Ministry of Tribal Affairs · Category: Software · Theme: Smart Education</strong>
+Prepared 29 Sep 2026. Status: working draft for team kickoff.</p>
+<blockquote>
+<p><strong>How to read this.</strong> Sections 1–4 are grounded in the official PS text and the Ministry's own pages. Section 12 is grounded in what I read in public repos. Everything marked <strong>[Proposed]</strong> or <strong>[Assumption]</strong> is my recommendation, not a fact about MoTA. Section 15 lists what I could not verify.</p>
+</blockquote>
+<hr>
+<h2>1. The PS in one page</h2>
+<p><strong>Ask:</strong> one common, secure, transparent, intelligent digital platform that runs MoTA's scholarship and fellowship schemes for Scheduled Tribe (ST) students end to end — apply → verify → scrutinise → screen → select → communicate → post-selection management — with <strong>scheme-specific eligibility, selection and documents configured (not hard-coded)</strong>.</p>
+<p><strong>Named schemes in the PS:</strong> NFST (research fellowships in India) and NOS (Master's/PhD abroad). MoTA runs three more (Section 2), and &quot;configurable&quot; is the hint that the platform should not be limited to two.</p>
+<p><strong>Problems the PS names:</strong> manual scrutiny, repeated correspondence, multiple verification levels, processing delays, repetitive admin effort, limited real-time visibility, errors in verification and workflow.</p>
+<p><strong>The five &quot;Expected Solution&quot; bullets (your scoring rubric):</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Official bullet</th>
+<th>What it really means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E1</td>
+<td>End-to-end digital application management</td>
+<td>Submission, upload, eligibility check, scrutiny, selection, communication in one system</td>
+</tr>
+<tr>
+<td>E2</td>
+<td>Automate eligibility + document verification with configurable scheme rules and AI (OCR / document intelligence)</td>
+<td>Rules engine driven by data + OCR pipeline</td>
+</tr>
+<tr>
+<td>E3</td>
+<td>Transparent screening/selection using approved criteria, merit-based, <strong>with human oversight</strong></td>
+<td>Explainable scoring; AI never decides alone</td>
+</tr>
+<tr>
+<td>E4</td>
+<td>Application tracking + workflow for applicants and admins, incl. deficiency identification, communication, resubmission</td>
+<td>Deficiency loop is a first-class feature</td>
+</tr>
+<tr>
+<td>E5</td>
+<td>Dashboards and analytics for the Ministry</td>
+<td>Monitoring of applications, verification, selection, scheme performance</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Other constraints in the text:</strong> separate interfaces for applicants and administrators; &quot;AI-based tools wherever appropriate&quot; (not everywhere); improve accuracy, transparency and accountability. Video link: NA. Data link set: only two public MoTA pages (no dataset is provided).</p>
+<hr>
+<h2>2. Domain context</h2>
+<h3>2.1 The five MoTA schemes (from tribal.nic.in and dbttribal.gov.in)</h3>
+<table>
+<thead>
+<tr>
+<th>Scheme (DBT code)</th>
+<th>Type</th>
+<th>Who administers</th>
+<th>Income cap</th>
+<th>Key benefit / selection</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pre-Matric (BPVGK)</td>
+<td>Centrally Sponsored</td>
+<td>States/UTs via State portal or NSP</td>
+<td>≤ ₹2.5 L</td>
+<td>Classes IX–X; ₹225/mo day scholar, ₹525/mo hosteller, 10 months</td>
+</tr>
+<tr>
+<td>Post-Matric (BVOBC)</td>
+<td>Centrally Sponsored</td>
+<td>States/UTs via State portal or NSP</td>
+<td>≤ ₹2.5 L</td>
+<td>Class X+ recognised courses; compulsory fees + maintenance ₹230–1,200/mo</td>
+</tr>
+<tr>
+<td>Top Class Education (A023B)</td>
+<td>Central Sector</td>
+<td>Centre, via scholarships.gov.in</td>
+<td>≤ ₹6 L</td>
+<td>Listed premier institutes (IITs, IIMs, AIIMS, NITs…); tuition, living, book/computer allowances</td>
+</tr>
+<tr>
+<td>NFST (ARG45)</td>
+<td>Central Sector</td>
+<td>Centre, fellowship.tribal.gov.in</td>
+<td>Not stated on page</td>
+<td>M.Phil/PhD; 750 fresh awards/yr; merit on Master's marks; preference to girls, Divyang, PVTGs</td>
+</tr>
+<tr>
+<td>NOS (AZKMI)</td>
+<td>Central Sector</td>
+<td>Centre, overseas.tribal.gov.in</td>
+<td>≤ ₹6 L</td>
+<td>PG/PhD/post-doc abroad; interview-based merit by Expert Committee; 17 ST + 3 PVTG awards/yr; paid via Indian Missions (MEA)</td>
+</tr>
+</tbody>
+</table>
+<p>Scale: the Ministry says about 30 lakh ST students are covered through DBT.</p>
+<p><strong>Design implications</strong></p>
+<ul>
+<li>Pre/Post-Matric are <strong>state-run and reach the Ministry as beneficiary/fund data</strong> via the DBT portal. For these the platform's role is closer to monitoring and interoperability than direct scrutiny. NFST/NOS/Top Class are where a direct workflow adds most value.</li>
+<li><strong>NOS is not paid like the others.</strong> The DBT portal lists its benefit type as &quot;In Others&quot;, and the site says money goes through Indian Missions abroad. A generic &quot;release installment to bank account&quot; module will not model it. Make the disbursement channel a per-scheme setting.</li>
+<li><strong>The Ministry's own pages disagree with each other and with several repos</strong> (Section 12.4). That is the strongest argument for your configurable-rules design and a reason to cite the guideline PDFs by version.</li>
+</ul>
+<h3>2.2 The current landscape you must fit into</h3>
+<ul>
+<li>Existing portals: fellowship.tribal.gov.in, overseas.tribal.gov.in, scholarships.gov.in (NSP), dbttribal.gov.in, plus a grievance module.</li>
+<li>NFST/NOS manuals already mention <strong>DigiLocker, UMANG and Canara Bank linkage</strong> and a verification module. So &quot;no digital process today&quot; is the wrong framing. Frame your product as <strong>one orchestration layer that removes re-verification and dead-end rejections</strong>.</li>
+<li>Grievance load is evidence of friction: as of 30 Jun 2021 the NFST portal had 17,638 student grievances received (17,580 solved), against 430 for NOS and 1,453 for Top Class. (Dated figures; use as illustration.)</li>
+</ul>
+<hr>
+<h2>3. Goals, non-goals, metrics</h2>
+<p><strong>Goals</strong></p>
+<ol>
+<li>One platform, many schemes, configured by admins without code changes.</li>
+<li>Cut manual scrutiny by automating checks and routing only exceptions to humans.</li>
+<li>Make every outcome explainable and auditable.</li>
+<li>Give applicants live status and a clear route to fix deficiencies.</li>
+<li>Give the Ministry a real-time picture of pipeline and scheme performance.</li>
+</ol>
+<p><strong>Non-goals (say these out loud in the pitch)</strong></p>
+<ul>
+<li>AI does not approve, reject or rank on its own authority. It extracts, checks, flags, explains.</li>
+<li>No claim of live integration with Aadhaar, DigiLocker, PFMS or NSP. Use documented adapters with mocks.</li>
+<li>Not replacing state portals for Pre/Post-Matric.</li>
+</ul>
+<p><strong>Success metrics [Proposed — validate baselines with the Ministry; do not present as facts]</strong></p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Target for demo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Field-extraction accuracy on your test set of certificates</td>
+<td>≥ 90 % on key fields, with per-field confidence shown</td>
+</tr>
+<tr>
+<td>Applications auto-cleared with no human touch vs routed to review</td>
+<td>Report the split honestly, per scheme</td>
+</tr>
+<tr>
+<td>Deficiency detected at upload time vs at scrutiny</td>
+<td>Majority caught at upload</td>
+</tr>
+<tr>
+<td>Decisions with stored reason + actor + timestamp</td>
+<td>100 %</td>
+</tr>
+<tr>
+<td>Time to add a new scheme via config</td>
+<td>Minutes, live in demo, zero deploy</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>4. Users and roles</h2>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Primary needs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ST Applicant</td>
+<td>Discover schemes, pre-check eligibility, apply once, upload once, track, fix deficiencies, get notified, raise grievance</td>
+</tr>
+<tr>
+<td>Document Verifier / Scrutiny Officer</td>
+<td>Queue with AI flags, side-by-side document vs extracted data, raise deficiency, mark eligible/ineligible with remarks</td>
+</tr>
+<tr>
+<td>Institute Nodal Officer</td>
+<td>Confirm enrolment, course, fee structure, joining and progress</td>
+</tr>
+<tr>
+<td>Selection Committee / Expert Panel</td>
+<td>Review shortlisted candidates, enter interview or proposal scores (needed for NOS and research proposals)</td>
+</tr>
+<tr>
+<td>MoTA Approving Officer</td>
+<td>Approve merit list, sanction, override with recorded justification</td>
+</tr>
+<tr>
+<td>Finance / DBT Officer</td>
+<td>Prepare and track disbursement batches</td>
+</tr>
+<tr>
+<td>Scheme Admin (Config Manager)</td>
+<td>Build and version schemes, rules, forms, document requirements, scoring</td>
+</tr>
+<tr>
+<td>Auditor / Super Admin</td>
+<td>Read-only audit trail, user and role management</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>5. End-to-end lifecycle</h2>
+<pre class="mermaid">stateDiagram-v2
+    [*] --&gt; Draft
+    Draft --&gt; Submitted
+    Submitted --&gt; AutoScreened
+    AutoScreened --&gt; Deficient: missing or mismatched
+    Deficient --&gt; Resubmitted: applicant cures
+    Resubmitted --&gt; AutoScreened
+    AutoScreened --&gt; UnderScrutiny
+    UnderScrutiny --&gt; Eligible
+    UnderScrutiny --&gt; Ineligible: reason mandatory
+    Ineligible --&gt; Appealed
+    Appealed --&gt; UnderScrutiny
+    Eligible --&gt; Shortlisted
+    Shortlisted --&gt; Selected
+    Shortlisted --&gt; Waitlisted
+    Shortlisted --&gt; NotSelected
+    Selected --&gt; Sanctioned
+    Sanctioned --&gt; Disbursing
+    Disbursing --&gt; Active
+    Active --&gt; Completed
+    Draft --&gt; Withdrawn
+</pre>
+<p>Design rules: every transition is logged (actor, time, reason, before/after); only permitted roles can trigger each transition; rejections require a stated reason; deficiency has a configurable cure window.</p>
+<hr>
+<h2>6. Functional requirements</h2>
+<p>Priority: <strong>P0</strong> must show in demo · <strong>P1</strong> should · <strong>P2</strong> if time.</p>
+<h3>M1 Identity and applicant profile</h3>
+<ul>
+<li>FR-1.1 (P0) Register/login with mobile or email OTP; JWT session with refresh.</li>
+<li>FR-1.2 (P0) One reusable applicant profile (personal, category, education, bank) so data and documents are entered once.</li>
+<li>FR-1.3 (P1) DigiLocker-style document fetch via adapter (mock).</li>
+<li>FR-1.4 (P1) Masked identity handling: never store a full Aadhaar number in plain form.</li>
+</ul>
+<h3>M2 Scheme discovery and pre-check</h3>
+<ul>
+<li>FR-2.1 (P0) Public scheme catalogue rendered from configuration.</li>
+<li>FR-2.2 (P0) Eligibility pre-check with criterion-by-criterion pass/fail and suggested alternative schemes.</li>
+<li>FR-2.3 (P1) Personalised scheme recommendation from the profile.</li>
+</ul>
+<h3>M3 Configurable scheme engine (the core differentiator)</h3>
+<ul>
+<li>FR-3.1 (P0) Scheme → versions → stages → rules → form fields → document requirements → scoring model, all stored as data.</li>
+<li>FR-3.2 (P0) Rule types: threshold, range, set membership, conditional, composite (AND/OR), hard vs soft severity, effective dates.</li>
+<li>FR-3.3 (P0) <strong>Dry-run sandbox:</strong> test a changed rule against existing applications and show pass-rate change before publishing.</li>
+<li>FR-3.4 (P0) Versioning: an application is evaluated under the version in force when it was submitted; publishing needs a reason and is audited.</li>
+<li>FR-3.5 (P1) Approval step (maker–checker) for publishing rule changes.</li>
+<li>FR-3.6 (P1) Version diff view.</li>
+<li>FR-3.7 (P2) Full no-code builder UI for adding a brand-new scheme.</li>
+</ul>
+<h3>M4 Application management</h3>
+<ul>
+<li>FR-4.1 (P0) Dynamic multi-step form generated from scheme configuration; autosave drafts.</li>
+<li>FR-4.2 (P0) Document upload with type, size, magic-byte and integrity checks; SHA-256 stored.</li>
+<li>FR-4.3 (P0) Submission generates an application ID and acknowledgement (PDF).</li>
+<li>FR-4.4 (P0) Live status timeline visible to the applicant.</li>
+</ul>
+<h3>M5 Document intelligence</h3>
+<ul>
+<li>FR-5.1 (P0) Quality guard on upload: blur, contrast, crop/skew, unreadable file, wrong page.</li>
+<li>FR-5.2 (P0) Document classification (caste, income, marksheet, ID, admission letter, etc.) to catch wrong-slot uploads.</li>
+<li>FR-5.3 (P0) OCR and structured field extraction with per-field confidence.</li>
+<li>FR-5.4 (P0) Cross-checks: form vs document, document vs document, certificate validity dates.</li>
+<li>FR-5.5 (P1) Fuzzy name matching that tolerates transliteration variants (edit distance plus phonetic).</li>
+<li>FR-5.6 (P1) Duplicate and tamper signals: identical file hash, repeated certificate numbers, reused documents across applicants.</li>
+<li>FR-5.7 (P0) Every flag carries an explanation the applicant can understand (&quot;You entered ₹3,00,000; certificate shows ₹4,50,000&quot;).</li>
+</ul>
+<h3>M6 Eligibility and scrutiny</h3>
+<ul>
+<li>FR-6.1 (P0) Rules engine outputs pass/fail per rule with the evidence used.</li>
+<li>FR-6.2 (P0) Two routes: clean applications fast-tracked to officer confirmation; flagged ones to a review queue.</li>
+<li>FR-6.3 (P0) Side-by-side viewer (document image, extracted values, flags) with approve / reject / raise-deficiency.</li>
+<li>FR-6.4 (P0) Human confirmation and written remarks required for every ineligibility decision.</li>
+<li>FR-6.5 (P1) Multi-level scrutiny (verifier → officer) configurable per scheme.</li>
+</ul>
+<h3>M7 Deficiency and communication</h3>
+<ul>
+<li>FR-7.1 (P0) Deficiency notice states exactly what is wrong, what to upload, and the deadline.</li>
+<li>FR-7.2 (P0) Applicant inbox with countdown, single-item re-upload, automatic re-screening.</li>
+<li>FR-7.3 (P0) Notifications on each status change (in-app plus email/SMS via adapter; bilingual templates).</li>
+<li>FR-7.4 (P1) Deadline reminders and auto-escalation when a cure window lapses.</li>
+</ul>
+<h3>M8 Screening and selection</h3>
+<ul>
+<li>FR-8.1 (P0) Merit scoring model defined in configuration (components and weights per scheme). <strong>Do not hard-code weights.</strong></li>
+<li>FR-8.2 (P0) Preferences and quotas applied as configured (for example girls, Divyang, PVTG for NFST; 17+3 split for NOS).</li>
+<li>FR-8.3 (P0) Score breakdown visible to officers and, in summary, to applicants.</li>
+<li>FR-8.4 (P1) Committee scoring: interview marks (NOS) and research proposal marks (NFST-style).</li>
+<li>FR-8.5 (P0) Publish merit list, selected and waitlist, triggering notifications.</li>
+<li>FR-8.6 (P0) Any override requires written justification and is audited.</li>
+<li>FR-8.7 (P1) Waitlist promotion when a selected candidate declines.</li>
+</ul>
+<h3>M9 Post-selection management</h3>
+<ul>
+<li>FR-9.1 (P1) Acceptance / joining confirmation with institute verification.</li>
+<li>FR-9.2 (P1) Sanction order generation (PDF).</li>
+<li>FR-9.3 (P1) Disbursement tracking with a per-scheme channel (bank/DBT batch vs via-mission for NOS), status and reconciliation view via mock PFMS adapter.</li>
+<li>FR-9.4 (P2) Periodic progress or attendance certification and renewal.</li>
+<li>FR-9.5 (P1) Grievance and appeal workflow.</li>
+</ul>
+<h3>M10 Dashboards and analytics</h3>
+<ul>
+<li>FR-10.1 (P0) Executive dashboard: applications funnel, turnaround time, deficiency reasons, scheme-wise status, state-wise map.</li>
+<li>FR-10.2 (P1) Equity view: gender, PVTG, state and institute-type distribution of applicants vs selected.</li>
+<li>FR-10.3 (P1) Officer workload and queue ageing.</li>
+<li>FR-10.4 (P1) Anomaly view (duplicates, outliers). CSV and PDF export.</li>
+</ul>
+<h3>M11 Platform</h3>
+<ul>
+<li>FR-11.1 (P0) RBAC with the roles above.</li>
+<li>FR-11.2 (P0) Tamper-evident audit log (hash-chained) with a verify-integrity screen.</li>
+<li>FR-11.3 (P0) English + Hindi UI; language persists. (P2: a few regional languages.)</li>
+<li>FR-11.4 (P0) Accessibility: keyboard navigation, contrast, font scaling.</li>
+<li>FR-11.5 (P1) Helpdesk chatbot grounded on scheme documents (retrieval, no free-form answers on eligibility decisions).</li>
+<li>FR-11.6 (P0) Public OpenAPI docs.</li>
+</ul>
+<hr>
+<h2>7. AI design: what AI does and does not do</h2>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Approach [Proposed]</th>
+<th>Decides?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image quality check</td>
+<td>OpenCV (Laplacian variance for blur, histogram contrast, skew)</td>
+<td>No, gives feedback</td>
+</tr>
+<tr>
+<td>Document classification</td>
+<td>Keyword/layout heuristics first, small classifier or LLM as fallback</td>
+<td>No</td>
+</tr>
+<tr>
+<td>OCR</td>
+<td>Tesseract or PaddleOCR (English + Hindi), with OpenCV preprocessing</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Field extraction</td>
+<td>Regex/templates first; LLM structured extraction as optional fallback</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Name matching</td>
+<td>Levenshtein + phonetic + token scoring</td>
+<td>Flags only</td>
+</tr>
+<tr>
+<td>Eligibility</td>
+<td><strong>Deterministic rules engine</strong></td>
+<td>Computes; officer confirms</td>
+</tr>
+<tr>
+<td>Merit ranking</td>
+<td><strong>Deterministic weighted model from config</strong></td>
+<td>Computes; committee approves</td>
+</tr>
+<tr>
+<td>Anomaly / fraud</td>
+<td>Hash duplicates, repeated IDs, statistical outliers</td>
+<td>Flags only</td>
+</tr>
+<tr>
+<td>Chatbot</td>
+<td>Retrieval over scheme docs</td>
+<td>Answers FAQs only</td>
+</tr>
+</tbody>
+</table>
+<p>Principles: (1) the LLM never sees the decision path; (2) a fully working offline/no-key mode so a demo never dies on Wi-Fi; (3) confidence thresholds route uncertain cases to humans; (4) <strong>data sovereignty</strong> — these are ST students' identity and income documents. Prefer on-prem OCR by default and send nothing to an external LLM without redaction and a clear switch. This is my judgment, but government reviewers tend to care about it.</p>
+<hr>
+<h2>8. Data model (core entities)</h2>
+<p><code>Applicant</code> · <code>ApplicantEducation</code> · <code>Scheme</code> → <code>SchemeVersion</code> → <code>Stage</code> → <code>Rule</code> · <code>FormField</code> · <code>DocumentRequirement</code> · <code>ScoringModel</code> · <code>Application</code> (pinned to a SchemeVersion) · <code>ApplicationDocument</code> (hash, type, OCR result, confidence) · <code>RuleEvaluation</code> (rule, result, evidence) · <code>Deficiency</code> (items, deadline, status) · <code>Review</code> (actor, decision, remarks) · <code>MeritEntry</code> (components, score, rank, quota bucket) · <code>Sanction</code> · <code>Disbursement</code> (channel, status, reference) · <code>Notification</code> · <code>Grievance</code> · <code>AuditLog</code> (prev-hash, hash) · <code>User</code> / <code>Role</code>.</p>
+<p>Store rule definitions as versioned JSON (relational core, JSON for rule bodies).</p>
+<hr>
+<h2>9. Integrations (adapter pattern)</h2>
+<table>
+<thead>
+<tr>
+<th>System</th>
+<th>Purpose</th>
+<th>Prototype approach</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DigiLocker</td>
+<td>Fetch issued certificates</td>
+<td>Mock adapter with the real OAuth flow shape</td>
+</tr>
+<tr>
+<td>NSP / State portals</td>
+<td>Import Pre/Post-Matric beneficiary data; avoid duplicate benefit</td>
+<td>Mock import + duplicate check</td>
+</tr>
+<tr>
+<td>DBT / PFMS / APBS</td>
+<td>Sanction and disbursement tracking</td>
+<td>Mock batch and status API; clearly label reference numbers as synthetic</td>
+</tr>
+<tr>
+<td>Aadhaar e-KYC</td>
+<td>Identity</td>
+<td>Masked/tokenised stub only</td>
+</tr>
+<tr>
+<td>SMS / email gateway</td>
+<td>Notifications</td>
+<td>Console or SMTP sandbox</td>
+</tr>
+</tbody>
+</table>
+<p>Publish each adapter's interface contract so you can say exactly what changes at go-live.</p>
+<hr>
+<h2>10. Non-functional requirements</h2>
+<ul>
+<li><strong>Security:</strong> password hashing, OTP with expiry and attempt limits, rate limiting, input validation, upload hardening (type, magic bytes, size, path-traversal safe, random file names), least-privilege RBAC, secrets only in environment variables, no PII in logs.</li>
+<li><strong>Privacy:</strong> DPDP Act 2023 principles — consent, purpose limitation, minimisation, retention rules. Encrypt documents at rest in production.</li>
+<li><strong>Auditability:</strong> append-only, hash-chained log; every override and rule change has actor, reason, timestamp, IP.</li>
+<li><strong>Accessibility and inclusion:</strong> WCAG 2.1 AA, low-bandwidth friendly, mobile-first, bilingual; consider assisted-mode for CSC / village kiosks [Assumption: rural applicants are a core segment].</li>
+<li><strong>Scale [Assumption]:</strong> design for lakhs of applications per cycle; async OCR via a job queue; pagination everywhere.</li>
+<li><strong>Reliability:</strong> deterministic offline mode for AI features; graceful degradation.</li>
+<li><strong>Hosting note:</strong> production would sit on NIC or a MeitY-empanelled cloud; say so in the deck.</li>
+</ul>
+<hr>
+<h2>11. Architecture and recommended stack</h2>
+<pre class="mermaid">flowchart LR
+    A[&#34;Applicant portal&#34;] --&gt; G[&#34;API gateway / backend&#34;]
+    B[&#34;Officer and admin console&#34;] --&gt; G
+    G --&gt; R[&#34;Rules and scoring engine&#34;]
+    G --&gt; W[&#34;Workflow and notifications&#34;]
+    G --&gt; Q[&#34;Job queue&#34;]
+    Q --&gt; O[&#34;OCR and document AI service&#34;]
+    G --&gt; D[(&#34;PostgreSQL&#34;)]
+    O --&gt; S[(&#34;Document storage&#34;)]
+    G --&gt; X[&#34;Adapters: DigiLocker, NSP, PFMS, SMS&#34;]
+    G --&gt; L[&#34;Hash-chained audit log&#34;]
+</pre>
+<p><strong>[Proposed] stack</strong> — pick the one your team can ship, not the fanciest:</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Recommendation</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Frontend</td>
+<td>React + TypeScript + Vite, Tailwind/shadcn, react-i18next, Recharts</td>
+<td>Fast, i18n-friendly, most repos converge here</td>
+</tr>
+<tr>
+<td>Backend</td>
+<td>FastAPI (Python)</td>
+<td>Same language as OCR/ML/Pydantic rule models; auto OpenAPI</td>
+</tr>
+<tr>
+<td>DB</td>
+<td>PostgreSQL</td>
+<td>Relational integrity for audit/reporting, JSONB for rule bodies (MongoDB works but weakens reporting and versioning stories)</td>
+</tr>
+<tr>
+<td>Async</td>
+<td>Redis + RQ/Celery</td>
+<td>OCR off the request path</td>
+</tr>
+<tr>
+<td>Files</td>
+<td>Local disk for prototype, S3-compatible (MinIO) for production</td>
+<td></td>
+</tr>
+<tr>
+<td>OCR</td>
+<td>Tesseract (eng+hin) + OpenCV; optional PaddleOCR</td>
+<td>Offline, no keys</td>
+</tr>
+<tr>
+<td>Auth</td>
+<td>JWT + OTP + RBAC</td>
+<td></td>
+</tr>
+<tr>
+<td>DevOps</td>
+<td>Docker Compose, GitHub Actions, seed script</td>
+<td>One-command demo</td>
+</tr>
+</tbody>
+</table>
+<p>Alternative that fits the same design: Node/Express + MongoDB (the most common choice in the repos), or Next.js + Supabase for speed.</p>
+<hr>
+<h2>12. Research: what other teams built (public repos)</h2>
+<h3>12.1 What I actually reviewed</h3>
+<p>I read the READMEs of <strong>8 of the 31 repos</strong> in depth, plus the official MoTA pages. I did <strong>not</strong> read the other 23 (Section 15). The live demo at sih239.vercel.app is a client-rendered app; I only saw its loading screen, so I can't describe it.</p>
+<table>
+<thead>
+<tr>
+<th>Repo</th>
+<th>Stack</th>
+<th>AI / OCR</th>
+<th>Distinctive</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>raushankumarsah07/AI-Enabled-… (#1)</td>
+<td>React 18 + Vite + Bootstrap, Node/Express, MongoDB</td>
+<td>Offline Tesseract.js + pdf-parse</td>
+<td>Rule builder with <strong>dry-run against existing applications</strong>, merit + horizontal quotas (30 % female, 4 % PwD), fraud dashboard (duplicate certificate numbers, SHA-256), audit log, retrieval chatbot, 5-minute judge script</td>
+</tr>
+<tr>
+<td>piyushkashyap160-spec/AI-Enabled-… (#3)</td>
+<td>Same base as #1 + Python scikit-learn service</td>
+<td>Tesseract.js + ML (RandomForest, GradientBoosting, IsolationForest)</td>
+<td>An &quot;ML hub&quot; page; all 5 schemes with official DBT codes; dark mode; Hindi/English</td>
+</tr>
+<tr>
+<td>Nidhi-2107/MoTA-Scholarship-Fellowship-Portal &quot;PARAKH 2.0&quot; (#2)</td>
+<td>React 19 + Vite, Spring Boot 3 / Java 21, MySQL + Flyway</td>
+<td>OpenCV + Tesseract + OpenAI (semantic only)</td>
+<td><strong>9 roles</strong> (institute, district, state, MoTA, selection committee…), scheme→version→rules→form_fields→document_requirements model, mock integrations toggle, upload hardening, works with no API key</td>
+</tr>
+<tr>
+<td>BhavyaAKundalani/mota-setu (#15)</td>
+<td>FastAPI, OpenCV + Gemini vision</td>
+<td>Dual-engine with offline failsafe</td>
+<td>&quot;Dialect-Shield&quot; phonetic name matching (Soundex + Levenshtein), 15-day right-to-cure via SMS/WhatsApp link, PFMS/APBS ledger, officer keyboard shortcuts, PVTG parity analytics</td>
+</tr>
+<tr>
+<td>gunjalprathamesh12/-TRIBAL-SAARTHI (#12)</td>
+<td>React 18 + Vite + Tailwind, Node/Express, MongoDB</td>
+<td>OCR simulation + anomaly detectors</td>
+<td>10-step wizard, AI fast-track vs manual queue, WCAG 2.1 AA controls, EN/HI/MR, DPDP-aligned masking, APBS batch with synthetic UTRs, SHA-256 audit ledger</td>
+</tr>
+<tr>
+<td>vivekisadev/medhavi (#20) and virajkvk18/Niyomi (#19)</td>
+<td>Next.js 16, TypeScript, Tailwind v4, shadcn, Zustand, Supabase</td>
+<td>Gemini / OpenAI vision with local mock</td>
+<td><strong>Identical READMEs</strong> (same template). DigiLocker OAuth, 8 rule checks, 154 automated tests + CI, Supabase RLS, rate limiting</td>
+</tr>
+<tr>
+<td>kvijaychamp-lang/smart-scholarship-audit-engine (#29)</td>
+<td>Python, Pydantic 2, Streamlit, Plotly, ReportLab</td>
+<td>No OCR; rules + document audit</td>
+<td><strong>CSV-driven rules and document matrix</strong>, hard vs soft rules, mandatory/conditional/waived document states, 15-day PDF deficiency notices, pytest suite; repo includes official guideline PDFs and files named as SIH26239 datasets</td>
+</tr>
+</tbody>
+</table>
+<h3>12.2 Patterns nearly everyone converged on</h3>
+<ol>
+<li>Data-driven rules (rules stored as data, editable by admin) — usually with a test sandbox.</li>
+<li>OCR + classification + cross-check of form vs document, with a confidence score.</li>
+<li>Deficiency loop with a cure window (7 or 15 days) and re-upload.</li>
+<li>&quot;AI advises, human decides&quot; with a mandatory-remarks audit trail.</li>
+<li>Weighted merit score plus quotas/preferences.</li>
+<li>Mock DBT/PFMS/APBS disbursement.</li>
+<li>Role-based portals, bilingual UI, dashboards, chatbot.</li>
+</ol>
+<p><strong>Implication:</strong> these are table stakes. Doing all seven well will make you <em>equal</em>, not <em>better</em>.</p>
+<h3>12.3 Ideas worth borrowing</h3>
+<ul>
+<li>Dry-run of rule changes against real applications (#1).</li>
+<li>Transliteration-tolerant tribal-name matching (#15) — solves a real cause of wrongful rejection.</li>
+<li>Upload-time quality guard so bad photos never reach a human (#15).</li>
+<li>Deficiency as &quot;cure, not reject&quot;, including SMS/WhatsApp-style links (#15).</li>
+<li>Explicit mock/real toggle and no-key operation (#2, #12, #20).</li>
+<li>Granular institutional roles: institute, district, state (#2).</li>
+<li>Document-state matrix: mandatory / conditional / waived / not applicable (#29).</li>
+<li>Automated tests and CI as a credibility signal (#20).</li>
+<li>A written judge demo script (#1, #15).</li>
+</ul>
+<h3>12.4 Red flags and inconsistencies to avoid</h3>
+<ul>
+<li><strong>Numbers disagree with the Ministry's pages.</strong> Several repos say NFST has &quot;750+ seats, ₹32,000/mo&quot; and NOS &quot;100 seats&quot;; the Ministry's page lists NFST ₹25,000 (M.Phil) / ₹28,000 (PhD) and 20 NOS awards. The official page may be older than the repos' sources, or the repos may be wrong. One repo says NFST needs UGC-NET/JRF while the page says merit on Master's marks. Treat all as unresolved until you check the current guideline PDFs, and put the source and date on each rule.</li>
+<li><strong>Invented merit weights.</strong> Three repos use three different formulas (50/30/20; 25/30/15/10/20; 40/20/20/20). None cites a guideline. The PS says &quot;approved scheme criteria&quot;, so make weights configurable and label demo weights as placeholders.</li>
+<li><strong>Suspiciously perfect ML metrics</strong> (99 % accuracy, 100 % ROC-AUC, 0.999 R²) and &quot;100 % rule accuracy&quot; come from synthetic data generated by the same rules. That is label leakage, not evidence. A judge who asks &quot;how was this trained?&quot; will end that pitch.</li>
+<li><strong>Fabricated impact stats</strong> on landing pages (for example crores disbursed). Use clearly labelled illustrative numbers or none.</li>
+<li><strong>Secrets and credentials in READMEs</strong>, including one real database password. Never commit secrets; a &quot;secure government system&quot; that leaks its own passwords loses credibility fast.</li>
+<li><strong>Sending PII to external LLM APIs</strong> with no redaction discussion.</li>
+<li><strong>Near-duplicate submissions.</strong> Repos #1/#3 and #19/#20 share templates. Expect judges to have seen the &quot;rule builder + OCR + merit + fraud + audit&quot; demo many times.</li>
+<li>Also: dependence on in-memory storage in a demo (#20 admits it), and a 30-second demo that only works with hand-picked sample files.</li>
+</ul>
+<hr>
+<h2>13. How to differentiate [Proposed]</h2>
+<ol>
+<li><strong>Evidence-first decisions.</strong> Show the exact region of the document that produced each extracted value, and store it with the rule result. This turns &quot;AI extracted it&quot; into &quot;here's the proof&quot;.</li>
+<li><strong>Impact-aware rule publishing.</strong> Sandbox plus a diff and an <em>equity impact</em> preview (how does this rule change the pass rate for PVTG, women, each state?). Nobody surveyed does the fairness part.</li>
+<li><strong>Cure-not-reject UX for first-generation applicants:</strong> plain-language deficiency notices in Hindi/English, one-item re-upload, mobile-first, assisted mode.</li>
+<li><strong>Verifiable audit chain:</strong> a screen where an auditor can re-verify the hash chain live.</li>
+<li><strong>Sovereign-by-default AI:</strong> offline OCR path, LLM optional and redacted, provider switch in config.</li>
+<li><strong>Interop contracts:</strong> documented adapters plus contract tests, so &quot;integration&quot; is a claim you can back.</li>
+<li><strong>Scheme onboarding demo:</strong> create a <em>new</em> scheme (for example a hypothetical state-specific scheme) from the admin UI in under five minutes with zero code.</li>
+</ol>
+<hr>
+<h2>14. Delivery plan (adjust to your event dates)</h2>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Scope</th>
+<th>Exit check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 Setup</td>
+<td>Repo, CI, Docker Compose, schema, seed data, design tokens, sample certificates (synthetic)</td>
+<td>One command boots everything</td>
+</tr>
+<tr>
+<td>1 Core</td>
+<td>Auth/RBAC, scheme config model, dynamic form, application + upload, status timeline</td>
+<td>Apply for NFST end to end</td>
+</tr>
+<tr>
+<td>2 Intelligence</td>
+<td>Quality guard, classification, OCR, cross-checks, rules engine with evidence, deficiency loop</td>
+<td>A bad upload is caught and cured live</td>
+</tr>
+<tr>
+<td>3 Selection</td>
+<td>Scrutiny console, merit + quotas, committee scoring, publish list, notifications, override + audit</td>
+<td>Merit list published with reasons</td>
+</tr>
+<tr>
+<td>4 Oversight</td>
+<td>Dashboards, equity view, anomaly, audit-chain verify, mock PFMS adapter, sanction PDF</td>
+<td>Ministry view tells a story</td>
+</tr>
+<tr>
+<td>5 Polish</td>
+<td>Hindi, accessibility pass, tests, docs, demo script, backup video</td>
+<td>Full rehearsal with airplane mode on</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Cut order if time runs short:</strong> no-code scheme builder UI → regional languages → chatbot → ML anomaly models (keep simple hash/duplicate checks) → post-selection renewal. <strong>Never cut:</strong> rules engine with sandbox, deficiency loop, human decision + audit, dashboard.</p>
+<p>Suggested split for a 4–6 person team: rules/workflow engine · document AI · applicant frontend · officer/admin frontend · data/dashboards/integrations · QA/docs/demo.</p>
+<hr>
+<h2>15. Assumptions, open questions, unverified items</h2>
+<p><strong>Open questions to resolve first</strong></p>
+<ol>
+<li>Which schemes must be live in the demo: NFST + NOS only, or all five?</li>
+<li>Current guideline values (income caps, stipends, seats, NET/JRF requirement, age limits, quota percentages). Pull from the latest PDFs on tribal.nic.in and record version and date.</li>
+<li>What the Ministry means by &quot;post-selection management&quot; (acceptance, renewal, progress reports, disbursement, UC?). The PS names it but gives no detail.</li>
+<li>Whether integration with existing NFST/NOS portals is expected, or a replacement.</li>
+<li>Real document samples: only synthetic ones are available, so build a labelled test set and be transparent about it.</li>
+</ol>
+<p><strong>Things I could not verify</strong></p>
+<ul>
+<li><strong>23 repos not read</strong> (#4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 16, 17, 18, 21–28, 30, 31). Some are clearly forks or variants (same accounts, similar names), but I haven't confirmed that. Reading them could add ideas.</li>
+<li>The <strong>files named as SIH26239 datasets</strong> in repo #29 (scheme rules CSV, document requirements CSV, applicant dataset, XLSX). I could not open them (the file host blocked automated access), so I don't know whether they are official or team-made. If they are official, they are the best ground truth you have. Check the SIH portal and ask your mentor.</li>
+<li>All scheme figures come from the Ministry pages as retrieved; several sections carry 2021–2024 dates and internal inconsistencies (for example the Top Class institute count appears as both 246 and 265).</li>
+<li>I did not run or inspect any repo's code, only their documentation, so features are as claimed by the authors.</li>
+</ul>
+<hr>
+<h2>16. Sources</h2>
+<ul>
+<li>PS text as provided (PS 26239).</li>
+<li><a href="https://tribal.nic.in/ScholarshiP.aspx">https://tribal.nic.in/ScholarshiP.aspx</a> — scheme descriptions, grievance counts</li>
+<li><a href="https://dbttribal.gov.in/AllScheme.aspx">https://dbttribal.gov.in/AllScheme.aspx</a> — scheme codes and types (last updated 27 Jul 2024)</li>
+<li>Repos: #1 raushankumarsah07/AI-Enabled-Scholarship-Fellowship-Management-System; #2 Nidhi-2107/MoTA-Scholarship-Fellowship-Portal; #3 piyushkashyap160-spec/AI-Enabled-Scholarship-Fellowship-Management-System; #12 gunjalprathamesh12/-TRIBAL-SAARTHI; #15 BhavyaAKundalani/mota-setu; #19 virajkvk18/Niyomi; #20 vivekisadev/medhavi; #29 kvijaychamp-lang/smart-scholarship-audit-engine</li>
+<li>Live demo: <a href="https://sih239.vercel.app">https://sih239.vercel.app</a> (loading screen only)</li>
+</ul>
+
+
+<!--claude-mermaid-runtime-begin:3477-->
+<style>.mermaid-diagram{margin-block:4px}.mermaid-diagram svg{display:block;margin:0 auto;max-width:100%;height:auto}</style>
+<script src="/_runtime/mermaid-11.16.1.min.js"></script>
+<script>(function(){
+var CFG={"palettes":{"light":{"surface":"#f4efe4","text":"#42392e","line":"#8a7f6d","border":"#7a6c52","bg":"#fffdf8"},"dark":{"surface":"#262b34","text":"#f2f3f5","line":"#a8adb8","border":"#9aa4b8","bg":"#1f232b"}}};
+if(typeof mermaid==='undefined')return;
+var pres=Array.prototype.slice.call(document.querySelectorAll('pre.mermaid')).filter(function(p){if(p.hasAttribute('data-claude-mermaid-claimed'))return false;p.setAttribute('data-claude-mermaid-claimed','1');return true;});
+if(!pres.length)return;
+var mq=window.matchMedia?window.matchMedia('(prefers-color-scheme: dark)'):null;
+var root=document.documentElement;
+var items=pres.map(function(pre){
+var mount=document.createElement('div');mount.className='mermaid-diagram';
+return {pre:pre,mount:mount,src:pre.textContent||''};
+});
+var seq=0;
+var renderGen=0;
+var lastKey='';
+function pageBg(fallback){
+var els=[document.body,document.documentElement];
+for(var i=0;i<els.length;i++){
+var c=els[i]&&getComputedStyle(els[i]).backgroundColor;
+if(c&&c!=='transparent'&&c!=='rgba(0, 0, 0, 0)')return c;
+}
+return fallback;
+}
+function render(){
+var theme=root.getAttribute('data-theme');
+var dark=theme==='dark'||(!!(mq&&mq.matches)&&theme!=='light');
+var pal=dark?CFG.palettes.dark:CFG.palettes.light;
+var bg=pageBg(pal.bg);
+var key=(dark?'d':'l')+'|'+bg;
+if(key===lastKey)return;
+lastKey=key;
+var gen=++renderGen;
+var font=getComputedStyle(document.body).fontFamily||'sans-serif';
+var nat={useMaxWidth:false};
+mermaid.initialize({
+startOnLoad:false,securityLevel:'strict',theme:'base',
+flowchart:nat,sequence:nat,er:nat,state:nat,class:nat,pie:nat,
+gantt:nat,journey:nat,timeline:nat,gitGraph:nat,mindmap:nat,xyChart:nat,
+quadrantChart:nat,sankey:nat,c4:nat,requirement:nat,block:nat,
+packet:nat,kanban:nat,architecture:nat,radar:nat,
+themeVariables:{background:bg,mainBkg:pal.surface,primaryColor:pal.surface,
+primaryTextColor:pal.text,lineColor:pal.line,primaryBorderColor:pal.border,
+nodeBorder:pal.border,clusterBorder:pal.border,edgeLabelBackground:bg,
+clusterBkg:'rgba(127,127,127,0.07)',titleColor:pal.text,
+darkMode:dark,rowOdd:bg,rowEven:'rgba(127,127,127,0.07)',
+attributeBackgroundColorOdd:bg,attributeBackgroundColorEven:'rgba(127,127,127,0.07)',
+fontSize:'16px',fontFamily:font},
+themeCSS:'.node rect, .node circle, .node polygon, .node path, .cluster rect { stroke-width: 2px; }'
+});
+items.forEach(function(it){
+var id='claude-mermaid-'+seq++;
+mermaid.render(id,it.src).then(function(r){
+if(gen!==renderGen)return;
+var prev=it.pre.previousElementSibling;
+if(prev&&prev.className==='mermaid-diagram'&&prev!==it.mount)return;
+it.mount.innerHTML=r.svg;
+if(!it.mount.parentNode)it.pre.parentNode.insertBefore(it.mount,it.pre);
+it.pre.style.display='none';
+},function(){
+var scratch=document.getElementById(id);
+if(scratch)scratch.parentNode.removeChild(scratch);
+scratch=document.getElementById('d'+id);
+if(scratch)scratch.parentNode.removeChild(scratch);
+if(gen!==renderGen)return;
+if(it.mount.parentNode)it.mount.parentNode.removeChild(it.mount);
+it.pre.style.display='';
+});
+});
+}
+render();
+if(mq&&mq.addEventListener)mq.addEventListener('change',render);
+if(typeof MutationObserver!=='undefined')new MutationObserver(render).observe(root,{attributes:true,attributeFilter:['data-theme']});
+})();</script>
+<!--claude-mermaid-runtime-end-->
+</body></html>
