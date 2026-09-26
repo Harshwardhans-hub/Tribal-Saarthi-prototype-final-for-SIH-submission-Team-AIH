@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI-Enabled Scholarship & Fellowship Management System for Scheduled Tribe Students — Ministry of Tribal Affairs, Government of India. SIH 2026 PS 26239.">
+  <title>Tribal Scholarship & Fellowship Portal | Ministry of Tribal Affairs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Inline critical above-fold CSS */
+    #app { min-height: 100vh; }
+    .page-load { opacity: 0; transition: opacity .3s; }
+    .page-load.ready { opacity: 1; }
+  </style>
+</head>
+<body>
+  <div id="app" class="page-load"></div>
+  <div id="modal-root"></div>
+  <script src="app.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('app').classList.add('ready');
+    });
+  </script>
+</body>
+</html>
