@@ -1,0 +1,16 @@
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE / Editor
+.vscode/
+.idea/
+
+# Environment variables
+.env
+.env.local
+
+# Node modules
+node_modules/
+
+# Ignore large media if desired, but wait the user wants to push the project, the mp4 is ~25MB which is fine for GitHub.
